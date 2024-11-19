@@ -1,16 +1,35 @@
-# delimais_customer
+<img width="100" height="100" src="assets/logo.png" alt="app logo">
 
-A new Flutter project.
+# DeliMais | Cliente
 
-## Getting Started
+Aplicação brasileira de entrega de comida.
 
-This project is a starting point for a Flutter application.
+## 🧰 Recursos
 
-A few resources to get you started if this is your first Flutter project:
+* Em breve
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🖥️ Plataformas
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Web 🟡
+* IOS ✅
+* Android ✅
+
+## 🧑‍💻 Tecnologias
+
+[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
+
+* [Dart](https://dart.dev/)
+* [Flutter](https://flutter.dev/)
+* [Dio](https://pub.dev/packages/dio)
+* [GetX](https://pub.dev/packages/get)
+* [Google Fonts](https://pub.dev/packages/google_fonts)
+* [Firebase Auth](https://pub.dev/packages/firebase_auth)
+
+## 📷 Screenshots
+
+## 📜 Créditos
+
+* SoftYes TI [\<softyes.com.br\>](https://softyes.com.br)
+* João Sereia [\<joao.sereia@softyes.com.br\>](mailto:joao.sereia@softyes.com.br)
+* Luan Davi Ponick [\<luanponick07@gmail.com\>](mailto:luanponick07@gmail.com)
+* Igor Kretzschmar Pereira [\<igorkp7@gmail.com\>](mailto:igorkp7@gmail.com)
