@@ -1,0 +1,14 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "cSpell.words": [
+    "appbundle",
+    "cupertino",
+    "delimais",
+    "desaturate",
+    "grayscale",
+    "kotlin",
+    "pubspec",
+    "softyes"
+  ],
+  "java.configuration.updateBuildConfiguration": "automatic"
+}
