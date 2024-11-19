@@ -6,7 +6,7 @@ endif
 OUT_DIR=~/"Downloads"
 APP_NAME=delimais_customer
 
-.PHONY: icons build build-android build-ios
+.PHONY: icons build build-android build-ios clean
 
 .default: icons
 
@@ -25,3 +25,8 @@ build-android:
 	@echo "Building the Android application"
 	@flutter build appbundle --release --obfuscate --split-debug-info ./build/app/outputs/bundle/release/
 	@cp ./build/app/outputs/bundle/release/app-release.aab ${OUT_DIR}/${APP_NAME}.aab
+
+clean:
+	@echo "Cleaning project"
+	@flutter clean
+	@flutter pub get
