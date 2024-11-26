@@ -1,14 +1,20 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
   "cSpell.words": [
+    "allprojects",
     "appbundle",
     "cupertino",
     "delimais",
     "desaturate",
+    "Getx",
     "grayscale",
     "kotlin",
+    "Kretzschmar",
+    "Ponick",
     "pubspec",
-    "softyes"
+    "softyes",
+    "subprojects"
   ],
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "makefile.configureOnOpen": false
 }
