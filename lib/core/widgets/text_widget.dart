@@ -6,9 +6,10 @@ import 'package:text_scroll/text_scroll.dart';
 class TextWidget extends StatelessWidget with ThemeMixin {
   const TextWidget(
     this.text, {
-    this.color,
     this.autoScroll = false,
     this.style = TextWidgetStyle.bodyMedium,
+    this.color,
+    this.decoration,
     super.key,
   });
 
@@ -16,11 +17,15 @@ class TextWidget extends StatelessWidget with ThemeMixin {
   final Color? color;
   final bool autoScroll;
   final TextWidgetStyle style;
+  final TextDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = getTextTheme(context);
-    final textStyle = _getTextStyle(textTheme).copyWith(color: color);
+    final textStyle = _getTextStyle(textTheme).copyWith(
+      color: color,
+      decoration: decoration,
+    );
 
     final pauseDuration = Duration(seconds: (0.2 * 16).toInt());
 
