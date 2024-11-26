@@ -11,16 +11,6 @@ Future<void> main() async {
 
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.dark,
-      systemNavigationBarDividerColor: Colors.transparent,
-    ),
-  );
 
   runApp(const MyApp());
 }
@@ -33,7 +23,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'DeliMais',
       getPages: AppPages.pages,
-      initialRoute: AppRoutes.root,
+      initialRoute: AppRoutes.login,
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       color: const ThemeLightColors().primary,
