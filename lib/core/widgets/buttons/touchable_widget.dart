@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class TouchableWidget extends StatelessWidget {
   const TouchableWidget({
-    required this.onHover,
     required this.onPressed,
     required this.child,
+    this.onHover,
     super.key,
   });
 
   final VoidCallback onPressed;
-  final void Function({required bool isHovered}) onHover;
+  final void Function({required bool isHovered})? onHover;
   final Widget child;
 
   @override
@@ -17,8 +17,8 @@ class TouchableWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: MouseRegion(
-        onEnter: (_) => onHover(isHovered: true),
-        onExit: (_) => onHover(isHovered: false),
+        onEnter: (_) => onHover?.call(isHovered: true),
+        onExit: (_) => onHover?.call(isHovered: false),
         child: child,
       ),
     );
