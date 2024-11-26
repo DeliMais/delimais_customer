@@ -50,6 +50,7 @@ class NavBarWidget extends StatelessWidget with ThemeMixin {
       color: colors.background,
       child: SafeAreaWidget(
         bottom: true,
+        showMinimum: false,
         child: WrapWidget(
           alignment: WrapAlignment.spaceEvenly,
           children: List.generate(
