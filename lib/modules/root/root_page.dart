@@ -3,6 +3,7 @@ import 'package:delimais_customer/core/widgets/nav_bar_widget.dart';
 import 'package:delimais_customer/core/widgets/page_widget.dart';
 import 'package:delimais_customer/modules/home/home_page.dart';
 import 'package:delimais_customer/modules/orders/orders_page.dart';
+import 'package:delimais_customer/modules/profile/profile_page.dart';
 import 'package:delimais_customer/modules/root/root_page_controller.dart';
 import 'package:delimais_customer/modules/search/search_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class RootPage extends GetView<RootPageController> with ThemeMixin {
           HomePage(),
           SearchPage(),
           OrdersPage(),
+          ProfilePage(),
         ],
       ),
       navBar: Obx(
@@ -49,6 +51,11 @@ class RootPage extends GetView<RootPageController> with ThemeMixin {
               text: 'Pedidos',
               icon: SolarLinearIcons.documentText,
               activeIcon: SolarBoldIcons.documentText,
+            ),
+            NavBarItem(
+              text: 'Perfil',
+              icon: SolarLinearIcons.userCircle,
+              activeIcon: SolarBoldIcons.userCircle,
             ),
           ],
         ),
