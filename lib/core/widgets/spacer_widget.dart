@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class SpacerWidget extends StatelessWidget with ThemeMixin {
   const SpacerWidget({
-    this.direction = Axis.horizontal,
+    this.direction = Axis.vertical,
     this.spacing = WidgetSpacing.medium,
     this.value,
     super.key,
