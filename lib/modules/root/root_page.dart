@@ -1,14 +1,42 @@
+import 'package:delimais_customer/core/mixins/theme_mixin.dart';
+import 'package:delimais_customer/core/widgets/nav_bar_widget.dart';
 import 'package:delimais_customer/core/widgets/page_widget.dart';
-import 'package:delimais_customer/core/widgets/text_widget.dart';
+import 'package:delimais_customer/modules/home/home_page.dart';
 import 'package:delimais_customer/modules/root/root_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:solar_icon_pack/solar_icon_pack.dart';
 
-class RootPage extends GetView<RootPageController> {
+class RootPage extends GetView<RootPageController> with ThemeMixin {
   const RootPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const PageWidget(body: Center(child: TextWidget('Root page')));
+    final (_, metrics) = getTheme(context);
+
+    return PageWidget(
+      body: PageView(
+        controller: controller.pageController,
+        onPageChanged: (value) => controller.page = value,
+        children: const [HomePage()],
+      ),
+      navBar: Obx(
+        () => NavBarWidget(
+          selected: controller.page,
+          onSelected: (page) async => controller.pageController.animateToPage(
+            page,
+            curve: metrics.curve,
+            duration: metrics.duration,
+          ),
+          items: const [
+            NavBarItem(
+              text: 'Início',
+              icon: SolarLinearIcons.home,
+              activeIcon: SolarBoldIcons.home,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
