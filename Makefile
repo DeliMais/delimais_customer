@@ -26,6 +26,13 @@ build-android:
 	@flutter build appbundle --release --obfuscate --split-debug-info ./build/app/outputs/bundle/release/
 	@cp ./build/app/outputs/bundle/release/app-release.aab ${OUT_DIR}/${APP_NAME}.aab
 
+upgrade:
+	@echo "Upgrading packages"
+	@flutter clean
+	@flutter pub get
+	@flutter pub upgrade
+	@flutter pub upgrade --major-versions
+
 clean:
 	@echo "Cleaning project"
 	@flutter clean
