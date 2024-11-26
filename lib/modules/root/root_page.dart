@@ -2,6 +2,7 @@ import 'package:delimais_customer/core/mixins/theme_mixin.dart';
 import 'package:delimais_customer/core/widgets/nav_bar_widget.dart';
 import 'package:delimais_customer/core/widgets/page_widget.dart';
 import 'package:delimais_customer/modules/home/home_page.dart';
+import 'package:delimais_customer/modules/orders/orders_page.dart';
 import 'package:delimais_customer/modules/root/root_page_controller.dart';
 import 'package:delimais_customer/modules/search/search_page.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,11 @@ class RootPage extends GetView<RootPageController> with ThemeMixin {
       body: PageView(
         controller: controller.pageController,
         onPageChanged: (value) => controller.page = value,
-        children: const [HomePage(), SearchPage()],
+        children: const [
+          HomePage(),
+          SearchPage(),
+          OrdersPage(),
+        ],
       ),
       navBar: Obx(
         () => NavBarWidget(
@@ -39,6 +44,11 @@ class RootPage extends GetView<RootPageController> with ThemeMixin {
               text: 'Buscar',
               icon: SolarLinearIcons.magnifer,
               activeIcon: SolarBoldIcons.magnifer,
+            ),
+            NavBarItem(
+              text: 'Pedidos',
+              icon: SolarLinearIcons.documentText,
+              activeIcon: SolarBoldIcons.documentText,
             ),
           ],
         ),
