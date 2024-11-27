@@ -9,12 +9,16 @@ class IconButtonWidget extends StatefulWidget {
     required this.icon,
     required this.onPressed,
     this.isFilled = false,
+    this.bgColor,
+    this.fgColor,
     super.key,
   });
 
   final IconData icon;
   final VoidCallback onPressed;
   final bool isFilled;
+  final Color? bgColor;
+  final Color? fgColor;
 
   @override
   State<StatefulWidget> createState() => _IconButtonWidgetState();
@@ -31,19 +35,17 @@ class _IconButtonWidgetState extends State<IconButtonWidget> with ThemeMixin {
   Widget build(BuildContext context) {
     final (colors, metrics) = getTheme(context);
 
-    var fgColor = colors.primary;
-    var bgColor = Colors.transparent;
-    if (_isHovered) {
-      fgColor = colors.primary.withOpacity(0.8);
-    }
+    var fgColor = widget.fgColor ?? colors.primary;
+    var bgColor = widget.bgColor ?? Colors.transparent;
+    if (_isHovered) fgColor = fgColor.withOpacity(0.8);
 
     if (widget.isFilled) {
-      bgColor = colors.primary;
-      fgColor = colors.onPrimary;
+      bgColor = widget.bgColor ?? colors.primary;
+      fgColor = widget.fgColor ?? colors.onPrimary;
 
       if (_isHovered) {
-        bgColor = colors.primary.withOpacity(0.8);
-        fgColor = colors.onPrimary.withOpacity(0.8);
+        bgColor = bgColor.withOpacity(0.8);
+        fgColor = fgColor.withOpacity(0.8);
       }
     }
 
