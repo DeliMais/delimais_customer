@@ -101,7 +101,6 @@ class _ItemWidget extends StatelessWidget with ThemeMixin {
           ),
           SpacerWidget(
             value: metrics.small / 4,
-            direction: Axis.vertical,
           ),
           TextWidget(
             item.text,
