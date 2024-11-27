@@ -1,12 +1,13 @@
 import 'package:delimais_customer/core/mixins/theme_mixin.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class TextWidget extends StatelessWidget with ThemeMixin {
   const TextWidget(
     this.text, {
+    this.maxLines = 1,
     this.autoScroll = false,
+    this.align = TextAlign.start,
     this.style = TextWidgetStyle.bodyMedium,
     this.color,
     this.decoration,
@@ -14,9 +15,11 @@ class TextWidget extends StatelessWidget with ThemeMixin {
   });
 
   final String? text;
-  final Color? color;
+  final int maxLines;
   final bool autoScroll;
+  final TextAlign align;
   final TextWidgetStyle style;
+  final Color? color;
   final TextDecoration? decoration;
 
   @override
@@ -31,8 +34,9 @@ class TextWidget extends StatelessWidget with ThemeMixin {
 
     if (autoScroll) {
       return TextScroll(
-        text ?? 'unknown'.tr,
+        text ?? '',
         style: textStyle,
+        textAlign: align,
         mode: TextScrollMode.bouncing,
         pauseBetween: pauseDuration,
         pauseOnBounce: pauseDuration,
@@ -41,8 +45,9 @@ class TextWidget extends StatelessWidget with ThemeMixin {
     }
 
     return Text(
-      text ?? 'unknown'.tr,
-      maxLines: 1,
+      text ?? '',
+      textAlign: align,
+      maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
       style: textStyle,
     );
