@@ -1,3 +1,4 @@
+import 'package:delimais_customer/core/mixins/dialog_mixin.dart';
 import 'package:delimais_customer/core/mixins/theme_mixin.dart';
 import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/core/widgets/big_app_bar_widget.dart';
@@ -11,6 +12,7 @@ import 'package:delimais_customer/core/widgets/spacer_widget.dart';
 import 'package:delimais_customer/core/widgets/text_widget.dart';
 import 'package:delimais_customer/core/widgets/wrap_widget.dart';
 import 'package:delimais_customer/modules/login/login_page_controller.dart';
+import 'package:delimais_customer/modules/login/modals/reset_password_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
@@ -81,7 +83,8 @@ class _ChildWidget extends StatelessWidget with ThemeMixin {
   }
 }
 
-class _FormWidget extends GetView<LoginPageController> with ThemeMixin {
+class _FormWidget extends GetView<LoginPageController>
+    with ThemeMixin, DialogMixin {
   const _FormWidget();
 
   @override
@@ -116,7 +119,13 @@ class _FormWidget extends GetView<LoginPageController> with ThemeMixin {
             child: TextButtonWidget(
               text: 'Esqueci a senha',
               color: colors.onBackgroundAlt,
-              onPressed: () {},
+              onPressed: () async => openModal(
+                context,
+                name: 'reset_password',
+                child: ResetPasswordModal(
+                  onFinishedPressed: () => Get.back<void>(),
+                ),
+              ),
             ),
           ),
           const SpacerWidget(spacing: WidgetSpacing.large),
