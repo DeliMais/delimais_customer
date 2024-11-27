@@ -6,8 +6,10 @@ class ContainerWidget extends StatelessWidget with ThemeMixin {
     this.width,
     this.height,
     this.padding,
+    this.alignment,
     this.color,
     this.decoration,
+    this.constraints,
     this.child,
     super.key,
   });
@@ -15,8 +17,10 @@ class ContainerWidget extends StatelessWidget with ThemeMixin {
   final double? width;
   final double? height;
   final EdgeInsets? padding;
+  final AlignmentGeometry? alignment;
   final Color? color;
   final Decoration? decoration;
+  final BoxConstraints? constraints;
   final Widget? child;
 
   @override
@@ -28,7 +32,9 @@ class ContainerWidget extends StatelessWidget with ThemeMixin {
       duration: metrics.duration,
       width: width,
       height: height,
+      constraints: constraints,
       padding: padding,
+      alignment: alignment,
       color: color,
       decoration: decoration,
       child: child,
