@@ -11,6 +11,7 @@ class ButtonWidget extends StatelessWidget with ThemeMixin {
     required this.icon,
     required this.text,
     required this.onPressed,
+    this.direction = TextDirection.ltr,
     this.bgColor,
     this.fgColor,
     super.key,
@@ -19,6 +20,7 @@ class ButtonWidget extends StatelessWidget with ThemeMixin {
   final IconData icon;
   final String text;
   final VoidCallback onPressed;
+  final TextDirection direction;
   final Color? bgColor;
   final Color? fgColor;
 
@@ -43,6 +45,7 @@ class ButtonWidget extends StatelessWidget with ThemeMixin {
           borderRadius: BorderRadius.all(metrics.radius),
         ),
         child: Row(
+          textDirection: direction,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconWidget(icon: icon, color: foregroundColor),
