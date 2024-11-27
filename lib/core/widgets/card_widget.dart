@@ -5,11 +5,17 @@ import 'package:flutter/material.dart';
 class CardWidget extends StatelessWidget with ThemeMixin {
   const CardWidget({
     required this.child,
+    this.width,
+    this.height,
+    this.constraints,
     this.color,
     super.key,
   });
 
   final Widget child;
+  final double? width;
+  final double? height;
+  final BoxConstraints? constraints;
   final Color? color;
 
   @override
@@ -17,6 +23,9 @@ class CardWidget extends StatelessWidget with ThemeMixin {
     final (colors, metrics) = getTheme(context);
 
     return ContainerWidget(
+      width: width,
+      height: height,
+      constraints: constraints,
       padding: EdgeInsets.all(metrics.medium),
       decoration: BoxDecoration(
         color: color ?? colors.surface,
