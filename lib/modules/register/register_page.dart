@@ -1,3 +1,4 @@
+import 'package:delimais_customer/core/mixins/dialog_mixin.dart';
 import 'package:delimais_customer/core/mixins/theme_mixin.dart';
 import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/core/widgets/big_app_bar_widget.dart';
@@ -10,14 +11,17 @@ import 'package:delimais_customer/core/widgets/safe_area_widget.dart';
 import 'package:delimais_customer/core/widgets/spacer_widget.dart';
 import 'package:delimais_customer/core/widgets/text_widget.dart';
 import 'package:delimais_customer/core/widgets/wrap_widget.dart';
-import 'package:delimais_customer/modules/login/login_page_controller.dart';
+import 'package:delimais_customer/modules/register/modals/data_conclusion_modal.dart';
+import 'package:delimais_customer/modules/register/modals/email_confirmation_modal.dart';
+import 'package:delimais_customer/modules/register/modals/phone_confirmation/phone_confirmation_modal.dart';
+import 'package:delimais_customer/modules/register/register_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:solar_icon_pack/solar_icon_pack.dart';
 
-class LoginPage extends GetView<LoginPageController> with ThemeMixin {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget with ThemeMixin {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +57,8 @@ class _HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const BigAppBarWidget(
-      title: 'Login',
+      title: 'Registrar',
+      isBackVisible: true,
       image: AssetImage('assets/delivery.png'),
     );
   }
@@ -81,17 +86,25 @@ class _ChildWidget extends StatelessWidget with ThemeMixin {
   }
 }
 
-class _FormWidget extends GetView<LoginPageController> with ThemeMixin {
+class _FormWidget extends GetView<RegisterPageController>
+    with ThemeMixin, DialogMixin {
   const _FormWidget();
 
   @override
   Widget build(BuildContext context) {
-    final (colors, _) = getTheme(context);
-
     return Form(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          const TextFieldWidget(
+            isAutocorrect: false,
+            icon: SolarLinearIcons.letter,
+            labelText: 'Nome',
+            hintText: 'Digite seu nome completo',
+            capitalization: TextCapitalization.words,
+            type: TextInputType.name,
+          ),
+          const SpacerWidget(),
           const TextFieldWidget(
             isAutocorrect: false,
             icon: SolarLinearIcons.letter,
@@ -101,37 +114,62 @@ class _FormWidget extends GetView<LoginPageController> with ThemeMixin {
           ),
           const SpacerWidget(),
           TextFieldWidget(
-            isObscure: true,
             isAutocorrect: false,
-            icon: SolarLinearIcons.lock,
-            labelText: 'Senha',
-            hintText: 'Digite sua senha',
-            type: TextInputType.visiblePassword,
+            icon: SolarLinearIcons.letter,
+            labelText: 'Confirmação de e-mail',
+            hintText: 'Digite seu e-mail novamente',
+            type: TextInputType.emailAddress,
             action: TextInputAction.go,
-            onFieldSubmitted: controller.login,
+            onFieldSubmitted: () async => _openModel(context),
           ),
-          const SpacerWidget(spacing: WidgetSpacing.small),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButtonWidget(
-              text: 'Esqueci a senha',
-              color: colors.onBackgroundAlt,
-              onPressed: () {},
-            ),
-          ),
-          const SpacerWidget(spacing: WidgetSpacing.large),
+          const SpacerWidget(),
           ButtonWidget(
-            icon: SolarLinearIcons.login2,
-            text: 'Entrar',
-            onPressed: controller.login,
+            text: 'Continuar',
+            direction: TextDirection.rtl,
+            icon: SolarLinearIcons.altArrowRight,
+            onPressed: () async => _openModel(context),
           ),
         ],
       ),
     );
   }
+
+  Future<void> _openModel(BuildContext context) async {
+    await openModal(
+      context,
+      isDismissible: false,
+      name: 'email_confirmation',
+      child: EmailConfirmationModal(
+        onNextPressed: () {
+          Get.back<void>();
+          openModal(
+            context,
+            isDismissible: false,
+            name: 'complete_data',
+            child: PoneConfirmationModal(
+              onNextPressed: () {
+                Get.back<void>();
+                openModal(
+                  context,
+                  isDismissible: false,
+                  name: 'data_confirmation',
+                  child: DataConclusionModal(
+                    onRegisterPressed: () async {
+                      Get.back<void>();
+                      await Get.offAllNamed<void>(AppRoutes.root);
+                    },
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
 
-class _SocialButtons extends GetView<LoginPageController> {
+class _SocialButtons extends GetView<RegisterPageController> {
   const _SocialButtons();
 
   @override
@@ -140,26 +178,26 @@ class _SocialButtons extends GetView<LoginPageController> {
       children: [
         ButtonWidget(
           icon: Ionicons.logo_google,
-          text: 'Fazer login com Google',
+          text: 'Registrar-se com Google',
           bgColor: Colors.white,
           fgColor: Colors.black,
-          onPressed: controller.login,
+          onPressed: controller.register,
         ),
         const SpacerWidget(),
         ButtonWidget(
           icon: Ionicons.logo_apple,
-          text: 'Fazer login com Apple',
+          text: 'Registrar-se com Apple',
           bgColor: Colors.black,
           fgColor: Colors.white,
-          onPressed: controller.login,
+          onPressed: controller.register,
         ),
         const SpacerWidget(),
         ButtonWidget(
           icon: Ionicons.logo_facebook,
-          text: 'Fazer login com Facebook',
+          text: 'Registrar-se com Facebook',
           bgColor: const Color(0xFF1877F2),
           fgColor: Colors.white,
-          onPressed: controller.login,
+          onPressed: controller.register,
         ),
       ],
     );
@@ -180,12 +218,12 @@ class _BottomWidget extends StatelessWidget with ThemeMixin {
         alignment: WrapAlignment.center,
         children: [
           TextWidget(
-            'Ainda não tem uma conta?',
+            'Já possui uma conta?',
             color: colors.onBackgroundAlt,
           ),
           TextButtonWidget(
-            text: 'Criar agora',
-            onPressed: () async => Get.toNamed<void>(AppRoutes.register),
+            text: 'Entre agora',
+            onPressed: () async => Get.offAllNamed<void>(AppRoutes.login),
           ),
         ],
       ),

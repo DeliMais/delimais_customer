@@ -13,6 +13,7 @@ class TextFieldWidget extends StatefulWidget {
     this.isAutocorrect = true,
     this.type = TextInputType.text,
     this.action = TextInputAction.next,
+    this.capitalization = TextCapitalization.none,
     this.controller,
     this.validator,
     this.onFieldSubmitted,
@@ -26,6 +27,7 @@ class TextFieldWidget extends StatefulWidget {
   final bool isAutocorrect;
   final TextInputType type;
   final TextInputAction action;
+  final TextCapitalization capitalization;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final VoidCallback? onFieldSubmitted;
@@ -80,6 +82,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with ThemeMixin {
       textInputAction: widget.action,
       style: textTheme.bodyMedium,
       keyboardAppearance: theme.brightness,
+      textCapitalization: widget.capitalization,
       validator: widget.validator,
       onFieldSubmitted: (_) => widget.onFieldSubmitted?.call(),
       decoration: InputDecoration(
