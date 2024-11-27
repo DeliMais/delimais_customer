@@ -18,6 +18,9 @@ dependencies:
   text_scroll: ^0.2.0
   solar_icon_pack: ^0.2.1
   ionicons: ^0.2.2
+  file_picker: ^8.1.4
+  path_provider: ^2.1.5
+  cross_file: ^0.3.4+2
 
 dev_dependencies:
   flutter_test:
