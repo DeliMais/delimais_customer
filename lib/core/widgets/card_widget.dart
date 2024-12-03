@@ -26,7 +26,7 @@ class CardWidget extends StatelessWidget with ThemeMixin {
       width: width,
       height: height,
       constraints: constraints,
-      padding: EdgeInsets.all(metrics.medium),
+      padding: EdgeInsets.all(metrics.small),
       decoration: BoxDecoration(
         color: color ?? colors.surface,
         borderRadius: BorderRadius.all(metrics.radius),
