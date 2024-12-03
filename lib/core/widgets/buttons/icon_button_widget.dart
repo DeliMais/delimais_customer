@@ -11,6 +11,7 @@ class IconButtonWidget extends StatefulWidget {
     this.isFilled = false,
     this.bgColor,
     this.fgColor,
+    this.iconSize,
     super.key,
   });
 
@@ -19,6 +20,7 @@ class IconButtonWidget extends StatefulWidget {
   final bool isFilled;
   final Color? bgColor;
   final Color? fgColor;
+  final double? iconSize;
 
   @override
   State<StatefulWidget> createState() => _IconButtonWidgetState();
@@ -49,7 +51,11 @@ class _IconButtonWidgetState extends State<IconButtonWidget> with ThemeMixin {
       }
     }
 
-    final child = IconWidget(color: fgColor, icon: widget.icon);
+    final child = IconWidget(
+      color: fgColor,
+      icon: widget.icon,
+      size: widget.iconSize,
+    );
 
     return TouchableWidget(
       onHover: _onHover,
