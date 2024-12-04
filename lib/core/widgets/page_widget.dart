@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class PageWidget extends StatelessWidget with ThemeMixin {
   const PageWidget({
     required this.body,
+    this.resizeToAvoidBottomInset = false,
     this.appBar,
     this.appBarSize,
     this.navBar,
@@ -11,6 +12,7 @@ class PageWidget extends StatelessWidget with ThemeMixin {
   });
 
   final Widget body;
+  final bool resizeToAvoidBottomInset;
   final Widget? appBar;
   final Size? appBarSize;
   final Widget? navBar;
@@ -20,9 +22,7 @@ class PageWidget extends StatelessWidget with ThemeMixin {
     final (_, metrics) = getTheme(context);
 
     return Scaffold(
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       bottomNavigationBar: navBar,
       appBar: appBar != null
           ? PreferredSize(
