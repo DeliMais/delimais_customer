@@ -89,6 +89,7 @@ class _DelegateWidget extends SliverPersistentHeaderDelegate with ThemeMixin {
     bool overlapsContent,
   ) {
     final (colors, metrics) = getTheme(context);
+
     final progress = shrinkOffset / expandedHeight;
     final hiddenOpacity = progress.clamp(0.0, 1.0) < 0.6 ? 1.0 : 0.0;
     final showingOpacity = progress.clamp(0.0, 1.0) > 0.6 ? 1.0 : 0.0;
@@ -103,13 +104,15 @@ class _DelegateWidget extends SliverPersistentHeaderDelegate with ThemeMixin {
       fit: StackFit.expand,
       clipBehavior: Clip.none,
       children: [
-        if (background != null) background!,
+        if (background != null) Positioned.fill(child: background!),
         if (background != null)
-          AnimatedOpacity(
-            curve: metrics.curve,
-            duration: metrics.duration,
-            opacity: showingOpacity,
-            child: ColoredBox(color: colors.background),
+          Positioned.fill(
+            child: AnimatedOpacity(
+              curve: metrics.curve,
+              duration: metrics.duration,
+              opacity: showingOpacity,
+              child: ColoredBox(color: colors.background),
+            ),
           ),
         if (isBackVisible || actions.isNotEmpty)
           Positioned(
@@ -138,7 +141,7 @@ class _DelegateWidget extends SliverPersistentHeaderDelegate with ThemeMixin {
         ),
         if (bottom != null)
           Positioned(
-            bottom: -100,
+            bottom: -(250 - metrics.large),
             left: 0,
             right: 0,
             child: AnimatedOpacity(
