@@ -14,6 +14,7 @@ class TextFieldWidget extends StatefulWidget {
     this.type = TextInputType.text,
     this.action = TextInputAction.next,
     this.capitalization = TextCapitalization.none,
+    this.maxLength,
     this.controller,
     this.validator,
     this.onFieldSubmitted,
@@ -28,6 +29,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextInputType type;
   final TextInputAction action;
   final TextCapitalization capitalization;
+  final int? maxLength;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final VoidCallback? onFieldSubmitted;
@@ -84,6 +86,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with ThemeMixin {
       keyboardAppearance: theme.brightness,
       textCapitalization: widget.capitalization,
       validator: widget.validator,
+      maxLength: widget.maxLength,
+      maxLines: widget.type == TextInputType.multiline ? null : 1,
       onFieldSubmitted: (_) => widget.onFieldSubmitted?.call(),
       decoration: InputDecoration(
         hintText: widget.hintText,
@@ -92,7 +96,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with ThemeMixin {
         isDense: true,
         alignLabelWithHint: true,
         fillColor: colors.surface,
-        contentPadding: EdgeInsets.zero,
+        contentPadding: EdgeInsets.symmetric(vertical: metrics.small),
         border: border,
         enabledBorder: border,
         disabledBorder: border,
@@ -110,9 +114,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with ThemeMixin {
         hintStyle: textTheme.bodyMedium?.copyWith(
           color: colors.onBackgroundAlt,
         ),
-        constraints: BoxConstraints.expand(
-          width: metrics.field.width,
-          height: metrics.field.height,
+        counterStyle: textTheme.bodyMedium?.copyWith(
+          color: colors.onBackgroundAlt,
+        ),
+        constraints: BoxConstraints(
+          minWidth: metrics.field.width,
+          minHeight: metrics.field.height,
         ),
       ),
     );
