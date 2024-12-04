@@ -1,5 +1,5 @@
 flutter_launcher_icons:
-  image_path: "assets/icon.png"
+  image_path: "assets/logo.png"
 
   min_sdk_android: 21
   android: "launcher_icon"
@@ -17,7 +17,10 @@ flutter_launcher_icons:
   image_path_ios_tinted_grayscale: "assets/icons/tinted_icon_ios.png"
 
   web:
-    generate: false
+    generate: true
+    image_path: "assets/logo.png"
+    theme_color: "#BA4E14"
+    background_color: "#F2F2F2"
 
   windows:
     generate: false
