@@ -8,6 +8,7 @@ class CardWidget extends StatelessWidget with ThemeMixin {
     this.width,
     this.height,
     this.constraints,
+    this.padding,
     this.color,
     super.key,
   });
@@ -16,6 +17,7 @@ class CardWidget extends StatelessWidget with ThemeMixin {
   final double? width;
   final double? height;
   final BoxConstraints? constraints;
+  final EdgeInsets? padding;
   final Color? color;
 
   @override
@@ -26,7 +28,7 @@ class CardWidget extends StatelessWidget with ThemeMixin {
       width: width,
       height: height,
       constraints: constraints,
-      padding: EdgeInsets.all(metrics.small),
+      padding: padding ?? EdgeInsets.all(metrics.medium),
       decoration: BoxDecoration(
         color: color ?? colors.surface,
         borderRadius: BorderRadius.all(metrics.radius),
