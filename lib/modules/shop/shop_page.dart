@@ -1,4 +1,6 @@
+import 'package:delimais_customer/core/mixins/dialog_mixin.dart';
 import 'package:delimais_customer/core/mixins/theme_mixin.dart';
+import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/core/widgets/badge_widget.dart';
 import 'package:delimais_customer/core/widgets/buttons/icon_button_widget.dart';
 import 'package:delimais_customer/core/widgets/buttons/touchable_widget.dart';
@@ -15,14 +17,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solar_icon_pack/solar_icon_pack.dart';
 
-part 'widgets/info_widget/shop_info_widget.dart';
-part 'widgets/info_widget/shop_info_header_widget.dart';
-part 'widgets/info_widget/shop_info_time_widget.dart';
-part 'widgets/info_widget/shop_info_delivery_widget.dart';
-part 'widgets/info_widget/shop_info_payment_widget.dart';
-part 'widgets/categories_widget/categories_widget.dart';
-part 'widgets/categories_widget/categories_item_widget.dart';
-part 'widgets/product_widget.dart';
+part 'widgets/shop_info/shop_info_widget.dart';
+part 'widgets/shop_info/shop_info_header_widget.dart';
+part 'widgets/shop_info/shop_info_time_widget.dart';
+part 'widgets/shop_info/shop_info_delivery_widget.dart';
+part 'widgets/shop_info/shop_info_payment_widget.dart';
+part 'widgets/shop_categories/shop_categories_widget.dart';
+part 'widgets/shop_categories/shop_categories_item_widget.dart';
+part 'widgets/shop_product_widget.dart';
 
 class ShopPage extends StatelessWidget with ThemeMixin {
   const ShopPage({super.key});
@@ -31,6 +33,8 @@ class ShopPage extends StatelessWidget with ThemeMixin {
   Widget build(BuildContext context) {
     final (colors, metrics) = getTheme(context);
 
+    const expandedHeight = 250.0;
+
     return PageWidget(
       body: NestedScrollView(
         body: const _BodyWidget(),
@@ -38,7 +42,7 @@ class ShopPage extends StatelessWidget with ThemeMixin {
           return [
             SliverAppBarWidget(
               title: 'Casa do Colono',
-              expandedHeight: 300,
+              expandedHeight: expandedHeight,
               collapsedHeight: 20,
               isBackVisible: false,
               bottom: const _ShopInfoWidget(),
@@ -57,7 +61,7 @@ class ShopPage extends StatelessWidget with ThemeMixin {
               ],
             ),
             SliverToBoxAdapter(
-              child: SpacerWidget(value: 100 + metrics.medium),
+              child: SpacerWidget(value: expandedHeight - metrics.medium),
             ),
             const _ToolbarWidget(),
             const SliverToBoxAdapter(child: SpacerWidget()),
@@ -73,7 +77,14 @@ class _BackgroundWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ImageWidget(provider: AssetImage('assets/delivery.png'));
+    return const AspectRatio(
+      aspectRatio: 16 / 9,
+      child: ImageWidget(
+        width: double.infinity,
+        height: double.infinity,
+        provider: AssetImage('assets/delivery.png'),
+      ),
+    );
   }
 }
 
@@ -85,7 +96,7 @@ class _ToolbarWidget extends GetView<ShopPageController> with ThemeMixin {
     final (_, metrics) = getTheme(context);
 
     return Obx(
-      () => _CategoriesWidget(
+      () => _ShopCategoriesWidget(
         current: controller.currentPage,
         categories: const ['Marmitas', 'Marmitas', 'Marmitas'],
         onPressed: (current) => controller.pageController.animateToPage(
@@ -98,7 +109,8 @@ class _ToolbarWidget extends GetView<ShopPageController> with ThemeMixin {
   }
 }
 
-class _BodyWidget extends GetView<ShopPageController> with ThemeMixin {
+class _BodyWidget extends GetView<ShopPageController>
+    with ThemeMixin, DialogMixin {
   const _BodyWidget();
 
   @override
@@ -114,23 +126,33 @@ class _BodyWidget extends GetView<ShopPageController> with ThemeMixin {
           physics: const NeverScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: metrics.medium),
           separatorBuilder: (_, __) => const SpacerWidget(),
-          itemBuilder: (_, __) => const _ProductWidget(),
+          itemBuilder: (_, __) => _ProductWidget(
+            onPressed: () async => _onPressed(context),
+          ),
         ),
         ListView.separated(
           itemCount: 100,
           physics: const NeverScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: metrics.medium),
           separatorBuilder: (_, __) => const SpacerWidget(),
-          itemBuilder: (_, __) => const _ProductWidget(),
+          itemBuilder: (_, __) => _ProductWidget(
+            onPressed: () async => _onPressed(context),
+          ),
         ),
         ListView.separated(
           itemCount: 100,
           physics: const NeverScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(horizontal: metrics.medium),
           separatorBuilder: (_, __) => const SpacerWidget(),
-          itemBuilder: (_, __) => const _ProductWidget(),
+          itemBuilder: (_, __) => _ProductWidget(
+            onPressed: () async => _onPressed(context),
+          ),
         ),
       ],
     );
+  }
+
+  Future<void> _onPressed(BuildContext context) async {
+    await Get.toNamed<void>(AppRoutes.product);
   }
 }

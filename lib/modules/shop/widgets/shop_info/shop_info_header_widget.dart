@@ -10,7 +10,7 @@ class _ShopInfoHeaderWidget extends StatelessWidget {
       children: [
         _HeaderLogoWidget(),
         SpacerWidget(direction: Axis.horizontal),
-        Flexible(child: _ShopInfoHeaderContentWidget()),
+        Expanded(child: _ShopInfoHeaderContentWidget()),
       ],
     );
   }
@@ -27,9 +27,7 @@ class _HeaderLogoWidget extends StatelessWidget with ThemeMixin {
       width: 80,
       height: 80,
       borderRadius: BorderRadius.all(metrics.radius),
-      provider: const NetworkImage(
-        'https://mir-s3-cdn-cf.behance.net/projects/404/3ba465170678061.Y3JvcCw3NDMsNTgxLDE2NSwzMTg.png',
-      ),
+      provider: const AssetImage('assets/logo.png'),
     );
   }
 }
@@ -48,7 +46,7 @@ class _ShopInfoHeaderContentWidget extends StatelessWidget with ThemeMixin {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextWidget(
-              'Casa do Colono',
+              'DeliMais Delivery',
               style: TextWidgetStyle.headlineSmall,
             ),
             BadgeWidget(text: 'Aberto'),
@@ -66,13 +64,14 @@ class _ShopInfoHeaderContentWidget extends StatelessWidget with ThemeMixin {
               value: metrics.small / 2,
               direction: Axis.horizontal,
             ),
-            TextWidget(
-              'Rua São Ninguém, 000',
-              color: colors.onBackgroundAlt,
+            Expanded(
+              child: TextWidget(
+                'Rua São Ninguém, 000',
+                color: colors.onBackgroundAlt,
+              ),
             ),
-            const Spacer(),
             TextWidget(
-              '• 4,9km',
+              ' • 4,9km',
               color: colors.onBackgroundAlt,
             ),
           ],

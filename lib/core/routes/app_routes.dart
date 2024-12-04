@@ -3,4 +3,5 @@ abstract class AppRoutes {
   static const register = '/register';
   static const root = '/root';
   static const shop = '/shop';
+  static const product = '/product';
 }

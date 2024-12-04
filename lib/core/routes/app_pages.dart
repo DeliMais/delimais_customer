@@ -4,6 +4,7 @@ import 'package:delimais_customer/core/bindings/root_module_binding.dart';
 import 'package:delimais_customer/core/bindings/shop_module_binding.dart';
 import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/modules/login/login_page.dart';
+import 'package:delimais_customer/modules/product/product_page.dart';
 import 'package:delimais_customer/modules/register/register_page.dart';
 import 'package:delimais_customer/modules/root/root_page.dart';
 import 'package:delimais_customer/modules/shop/shop_page.dart';
@@ -34,6 +35,11 @@ abstract class AppPages {
       name: AppRoutes.shop,
       page: ShopPage.new,
       binding: const ShopModuleBinding(),
+    ),
+    GetPage<void>(
+      title: 'Produto',
+      name: AppRoutes.product,
+      page: ProductPage.new,
     ),
   ];
 }

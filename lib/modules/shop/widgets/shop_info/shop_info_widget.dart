@@ -1,13 +1,16 @@
 part of '../../shop_page.dart';
 
-class _ShopInfoWidget extends StatelessWidget {
+class _ShopInfoWidget extends StatelessWidget with ThemeMixin {
   const _ShopInfoWidget();
 
   @override
   Widget build(BuildContext context) {
-    return const CardWidget(
+    final (_, metrics) = getTheme(context);
+
+    return CardWidget(
       height: 250,
-      child: Column(
+      padding: EdgeInsets.all(metrics.small),
+      child: const Column(
         children: [
           _ShopInfoHeaderWidget(),
           SpacerWidget(),

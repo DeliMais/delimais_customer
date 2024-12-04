@@ -1,7 +1,7 @@
 part of '../../shop_page.dart';
 
-class _CategoriesItemWidget extends StatelessWidget with ThemeMixin {
-  const _CategoriesItemWidget({
+class _ShopCategoriesItemWidget extends StatelessWidget with ThemeMixin {
+  const _ShopCategoriesItemWidget({
     required this.text,
     required this.isActive,
     required this.onPressed,

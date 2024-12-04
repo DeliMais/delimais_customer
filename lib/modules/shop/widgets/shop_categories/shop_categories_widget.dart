@@ -1,7 +1,7 @@
 part of '../../shop_page.dart';
 
-class _CategoriesWidget extends StatelessWidget {
-  const _CategoriesWidget({
+class _ShopCategoriesWidget extends StatelessWidget {
+  const _ShopCategoriesWidget({
     required this.current,
     required this.categories,
     required this.onPressed,
@@ -66,7 +66,7 @@ class _CategoriesWidgetDelegate extends SliverPersistentHeaderDelegate
         scrollDirection: Axis.horizontal,
         children: List.generate(categories.length, (index) {
           final text = categories[index];
-          return _CategoriesItemWidget(
+          return _ShopCategoriesItemWidget(
             text: text.capitalize!,
             isActive: current == index,
             onPressed: () => onPressed(index),
