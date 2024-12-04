@@ -6,7 +6,7 @@ endif
 OUT_DIR=~/"Downloads"
 APP_NAME=delimais_customer
 
-.PHONY: icons build build-android build-ios clean
+.PHONY: icons build build_ios build_android_aab build_android_apk upgrade clean
 
 .default: icons
 
@@ -14,17 +14,22 @@ icons:
 	@echo "Generating launcher icons"
 	@dart run flutter_launcher_icons
 
-build: build-ios build-android
+build: build_ios build_android_aab
 
-build-ios:
+build_ios:
 	@echo "Building the IOS application"
 	@flutter build ipa --release --obfuscate --split-debug-info ./build/app/outputs/bundle/release/
 	@cp ./build/app/outputs/bundle/release/app-release.ipa ${OUT_DIR}/${APP_NAME}.ipa
 
-build-android:
+build_android_aab:
 	@echo "Building the Android application"
 	@flutter build appbundle --release --obfuscate --split-debug-info ./build/app/outputs/bundle/release/
 	@cp ./build/app/outputs/bundle/release/app-release.aab ${OUT_DIR}/${APP_NAME}.aab
+
+build_android_apk:
+	@echo "Building the Android application"
+	@flutter build apk --release --obfuscate --split-debug-info ./build/app/outputs/flutter-apk/
+	@cp ./build/app/outputs/flutter-apk/app-release.apk ${OUT_DIR}/${APP_NAME}.apk
 
 upgrade:
 	@echo "Upgrading packages"
