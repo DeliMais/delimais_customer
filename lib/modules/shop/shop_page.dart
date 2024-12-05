@@ -36,6 +36,14 @@ class ShopPage extends StatelessWidget with ThemeMixin {
     const expandedHeight = 250.0;
 
     return PageWidget(
+      fab: IconButtonWidget(
+        isFilled: true,
+        icon: SolarLinearIcons.bag,
+        iconSize: metrics.icon * 1.4,
+        borderRadius: BorderRadius.circular(100),
+        padding: EdgeInsets.all(metrics.medium / 1.4),
+        onPressed: () {},
+      ),
       body: NestedScrollView(
         body: const _BodyWidget(),
         headerSliverBuilder: (context, innerBoxIsScrolled) {

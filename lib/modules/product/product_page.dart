@@ -1,4 +1,5 @@
 import 'package:delimais_customer/core/mixins/theme_mixin.dart';
+import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/core/widgets/buttons/button_widget.dart';
 import 'package:delimais_customer/core/widgets/buttons/icon_button_widget.dart';
 import 'package:delimais_customer/core/widgets/card_widget.dart';
@@ -11,6 +12,7 @@ import 'package:delimais_customer/core/widgets/sliver_app_bar_widget.dart';
 import 'package:delimais_customer/core/widgets/spacer_widget.dart';
 import 'package:delimais_customer/core/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:solar_icon_pack/solar_icon_pack.dart';
 
 part 'widgets/product_addon/product_addon_header_widget.dart';
@@ -26,7 +28,7 @@ class ProductPage extends StatelessWidget with ThemeMixin {
 
     return PageWidget(
       resizeToAvoidBottomInset: true,
-      navBar: const _ProductBottomWidget(),
+      footer: const _ProductBottomWidget(),
       body: CustomScrollView(
         slivers: [
           const SliverAppBarWidget(

@@ -5,17 +5,19 @@ class PageWidget extends StatelessWidget with ThemeMixin {
   const PageWidget({
     required this.body,
     this.resizeToAvoidBottomInset = false,
-    this.appBar,
-    this.appBarSize,
-    this.navBar,
+    this.header,
+    this.headerSize,
+    this.fab,
+    this.footer,
     super.key,
   });
 
   final Widget body;
   final bool resizeToAvoidBottomInset;
-  final Widget? appBar;
-  final Size? appBarSize;
-  final Widget? navBar;
+  final Widget? header;
+  final Size? headerSize;
+  final Widget? fab;
+  final Widget? footer;
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +25,12 @@ class PageWidget extends StatelessWidget with ThemeMixin {
 
     return Scaffold(
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      bottomNavigationBar: navBar,
-      appBar: appBar != null
+      floatingActionButton: fab,
+      bottomNavigationBar: footer,
+      appBar: header != null
           ? PreferredSize(
               preferredSize: metrics.appBar,
-              child: appBar!,
+              child: header!,
             )
           : null,
       body: Center(child: body),

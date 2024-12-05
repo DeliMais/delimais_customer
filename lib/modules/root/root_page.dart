@@ -28,7 +28,7 @@ class RootPage extends GetView<RootPageController> with ThemeMixin {
           ProfilePage(),
         ],
       ),
-      navBar: Obx(
+      footer: Obx(
         () => NavBarWidget(
           selected: controller.page,
           onSelected: (page) async => controller.pageController.animateToPage(

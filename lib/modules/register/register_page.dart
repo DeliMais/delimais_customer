@@ -31,7 +31,7 @@ class RegisterPage extends StatelessWidget with ThemeMixin {
     final headerHeight = media.height / 3.4;
 
     return PageWidget(
-      navBar: const _BottomWidget(),
+      footer: const _BottomWidget(),
       body: Stack(
         children: [
           Positioned(

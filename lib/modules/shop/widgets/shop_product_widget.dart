@@ -12,12 +12,12 @@ class _ProductWidget extends StatelessWidget with ThemeMixin {
     return TouchableWidget(
       onPressed: onPressed,
       child: CardWidget(
-        height: 80 + metrics.small,
         padding: EdgeInsets.all(metrics.small),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const ImageWidget(
-              height: double.infinity,
+              height: 80,
               provider: AssetImage('assets/logo.png'),
             ),
             const SpacerWidget(
@@ -25,6 +25,7 @@ class _ProductWidget extends StatelessWidget with ThemeMixin {
               spacing: WidgetSpacing.small,
             ),
             Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const TextWidget(

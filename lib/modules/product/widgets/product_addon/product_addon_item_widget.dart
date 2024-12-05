@@ -10,7 +10,6 @@ class _ProductAddonItemWidget extends StatelessWidget with ThemeMixin {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: metrics.medium),
       child: CardWidget(
-        height: 50 + metrics.small,
         padding: EdgeInsets.all(metrics.small),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -19,7 +18,7 @@ class _ProductAddonItemWidget extends StatelessWidget with ThemeMixin {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const ImageWidget(
-                  height: double.infinity,
+                  height: 60,
                   provider: AssetImage('assets/logo.png'),
                 ),
                 const SpacerWidget(

@@ -35,9 +35,9 @@ class _ProductBottomWidget extends StatelessWidget with ThemeMixin {
             ),
             Flexible(
               child: ButtonWidget(
-                icon: SolarLinearIcons.addCircle,
                 text: 'Adicionar',
-                onPressed: () {},
+                icon: SolarLinearIcons.addCircle,
+                onPressed: () async => Get.offNamed(AppRoutes.shop),
               ),
             ),
           ],
