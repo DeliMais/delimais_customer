@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.4.0
+
+* Added bag screen UI
+* Added payment screen UI
+* Added checkout screen UI
+* Added UI/UX improvements
+
+A few more things. Check the [2f826ddd6d5486812129b1db2786378248bd53df](https://github.com/DeliMais/delimais_customer/tree/2f826ddd6d5486812129b1db2786378248bd53df) commit and before.
+
 ## 0.3.0
 
 * Added web support
