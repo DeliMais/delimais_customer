@@ -4,6 +4,7 @@ import 'package:delimais_customer/core/bindings/root_module_binding.dart';
 import 'package:delimais_customer/core/bindings/shop_module_binding.dart';
 import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/modules/bag/bag_page.dart';
+import 'package:delimais_customer/modules/checkout/checkout_page.dart';
 import 'package:delimais_customer/modules/login/login_page.dart';
 import 'package:delimais_customer/modules/product/product_page.dart';
 import 'package:delimais_customer/modules/register/register_page.dart';
@@ -46,6 +47,11 @@ abstract class AppPages {
       title: 'Sacola',
       name: AppRoutes.bag,
       page: BagPage.new,
+    ),
+    GetPage<void>(
+      title: 'Checkout',
+      name: AppRoutes.checkout,
+      page: CheckoutPage.new,
     ),
   ];
 }
