@@ -10,8 +10,8 @@ Aplicação brasileira de entrega de comida.
 
 ## 🖥️ Plataformas
 
-* Web 🟡
 * IOS ✅
+* Web ✅
 * Android ✅
 
 ## 🧑‍💻 Tecnologias
