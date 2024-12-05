@@ -42,6 +42,22 @@ class CheckoutPage extends StatelessWidget with ThemeMixin {
               Row(
                 children: [
                   IconWidget(
+                    icon: SolarLinearIcons.bag,
+                    color: colors.onBackgroundAlt,
+                  ),
+                  const SpacerWidget(
+                    direction: Axis.horizontal,
+                    spacing: WidgetSpacing.small,
+                  ),
+                  TextWidget(
+                    r'Subtotal: R$100,00',
+                    color: colors.onBackgroundAlt,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  IconWidget(
                     icon: SolarLinearIcons.scooter,
                     color: colors.onBackgroundAlt,
                   ),
@@ -55,47 +71,30 @@ class CheckoutPage extends StatelessWidget with ThemeMixin {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  const TextWidget(
-                    r'Total: R$100,00',
-                    style: TextWidgetStyle.headlineSmall,
-                  ),
-                  const SpacerWidget(
-                    direction: Axis.horizontal,
-                    spacing: WidgetSpacing.small,
-                  ),
-                  TextWidget(
-                    '| 2 itens',
-                    color: colors.onBackgroundAlt,
-                  ),
-                ],
+              const SpacerWidget(spacing: WidgetSpacing.small),
+              const TextWidget(
+                r'Total: R$110,00',
+                style: TextWidgetStyle.headlineSmall,
               ),
               const SpacerWidget(),
               ButtonWidget(
                 text: 'Finalizar compra',
                 icon: SolarLinearIcons.checkCircle,
-                onPressed: () async => Get.toNamed(AppRoutes.checkout),
+                onPressed: () async => Get.toNamed(AppRoutes.payment),
               ),
             ],
           ),
         ),
       ),
-      body: Padding(
+      body: ListView(
         padding: EdgeInsets.all(metrics.medium),
-        child: const CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(child: _UserDataFormWidget()),
-            SliverToBoxAdapter(
-              child: SpacerWidget(spacing: WidgetSpacing.large),
-            ),
-            SliverToBoxAdapter(child: _DeliveryPickerWidget()),
-            SliverToBoxAdapter(
-              child: SpacerWidget(spacing: WidgetSpacing.large),
-            ),
-            SliverToBoxAdapter(child: _DeliveryFormWidget()),
-          ],
-        ),
+        children: const [
+          _UserDataFormWidget(),
+          SpacerWidget(spacing: WidgetSpacing.large),
+          _DeliveryPickerWidget(),
+          SpacerWidget(spacing: WidgetSpacing.large),
+          _DeliveryFormWidget(),
+        ],
       ),
     );
   }

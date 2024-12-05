@@ -6,6 +6,7 @@ import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/modules/bag/bag_page.dart';
 import 'package:delimais_customer/modules/checkout/checkout_page.dart';
 import 'package:delimais_customer/modules/login/login_page.dart';
+import 'package:delimais_customer/modules/payment/payment_page.dart';
 import 'package:delimais_customer/modules/product/product_page.dart';
 import 'package:delimais_customer/modules/register/register_page.dart';
 import 'package:delimais_customer/modules/root/root_page.dart';
@@ -52,6 +53,11 @@ abstract class AppPages {
       title: 'Checkout',
       name: AppRoutes.checkout,
       page: CheckoutPage.new,
+    ),
+    GetPage<void>(
+      title: 'Pagamento',
+      name: AppRoutes.payment,
+      page: PaymentPage.new,
     ),
   ];
 }

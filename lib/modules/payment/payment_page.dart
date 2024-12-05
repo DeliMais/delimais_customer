@@ -2,9 +2,10 @@ import 'package:delimais_customer/core/mixins/theme_mixin.dart';
 import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/core/widgets/app_bar_widget.dart';
 import 'package:delimais_customer/core/widgets/buttons/button_widget.dart';
-import 'package:delimais_customer/core/widgets/buttons/icon_button_widget.dart';
 import 'package:delimais_customer/core/widgets/card_widget.dart';
+import 'package:delimais_customer/core/widgets/icon_widget.dart';
 import 'package:delimais_customer/core/widgets/image_widget.dart';
+import 'package:delimais_customer/core/widgets/option_widget.dart';
 import 'package:delimais_customer/core/widgets/page_widget.dart';
 import 'package:delimais_customer/core/widgets/safe_area_widget.dart';
 import 'package:delimais_customer/core/widgets/spacer_widget.dart';
@@ -13,27 +14,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:solar_icon_pack/solar_icon_pack.dart';
 
-part 'widgets/bag_product_widget.dart';
+part 'widgets/payment_method_picker_widget.dart';
+part 'widgets/payment_pix_widget.dart';
 
-class BagPage extends StatelessWidget with ThemeMixin {
-  const BagPage({super.key});
+class PaymentPage extends StatelessWidget with ThemeMixin {
+  const PaymentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final (colors, metrics) = getTheme(context);
 
     return PageWidget(
-      header: AppBarWidget(
-        title: 'Sacola',
-        isBackVisible: true,
-        actions: [
-          IconButtonWidget(
-            text: 'Limpar',
-            icon: SolarLinearIcons.clipboardRemove,
-            onPressed: () {},
-          ),
-        ],
-      ),
+      header: const AppBarWidget(title: 'Pagamento', isBackVisible: true),
       footer: CardWidget(
         padding: EdgeInsets.all(metrics.medium),
         child: SafeAreaWidget(
@@ -42,37 +34,27 @@ class BagPage extends StatelessWidget with ThemeMixin {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  const TextWidget(
-                    r'Total: R$100,00',
-                    style: TextWidgetStyle.headlineSmall,
-                  ),
-                  const SpacerWidget(
-                    direction: Axis.horizontal,
-                    spacing: WidgetSpacing.small,
-                  ),
-                  TextWidget(
-                    '| 2 itens',
-                    color: colors.onBackgroundAlt,
-                  ),
-                ],
+              const TextWidget(
+                r'Total: R$110,00',
+                style: TextWidgetStyle.headlineSmall,
               ),
               const SpacerWidget(),
               ButtonWidget(
-                text: 'Finalizar compra',
+                text: 'Finalizar pagamento',
                 icon: SolarLinearIcons.checkCircle,
-                onPressed: () async => Get.toNamed(AppRoutes.checkout),
+                onPressed: () async => Get.offAllNamed(AppRoutes.shop),
               ),
             ],
           ),
         ),
       ),
-      body: ListView.separated(
+      body: ListView(
         padding: EdgeInsets.all(metrics.medium),
-        itemCount: 3,
-        separatorBuilder: (_, __) => const SpacerWidget(),
-        itemBuilder: (_, __) => _BagProductWidget(),
+        children: const [
+          _PaymentMethodPickerWidget(),
+          SpacerWidget(spacing: WidgetSpacing.large),
+          _PaymentPixWidget(),
+        ],
       ),
     );
   }
