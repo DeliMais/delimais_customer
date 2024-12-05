@@ -2,6 +2,8 @@ import 'package:delimais_customer/core/mixins/theme_mixin.dart';
 import 'package:delimais_customer/core/widgets/buttons/touchable_widget.dart';
 import 'package:delimais_customer/core/widgets/container_widget.dart';
 import 'package:delimais_customer/core/widgets/icon_widget.dart';
+import 'package:delimais_customer/core/widgets/spacer_widget.dart';
+import 'package:delimais_customer/core/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class IconButtonWidget extends StatefulWidget {
@@ -9,18 +11,24 @@ class IconButtonWidget extends StatefulWidget {
     required this.icon,
     required this.onPressed,
     this.isFilled = false,
+    this.text,
     this.bgColor,
     this.fgColor,
     this.iconSize,
+    this.padding,
+    this.borderRadius,
     super.key,
   });
 
   final IconData icon;
   final VoidCallback onPressed;
   final bool isFilled;
+  final String? text;
   final Color? bgColor;
   final Color? fgColor;
   final double? iconSize;
+  final EdgeInsets? padding;
+  final BorderRadius? borderRadius;
 
   @override
   State<StatefulWidget> createState() => _IconButtonWidgetState();
@@ -51,10 +59,29 @@ class _IconButtonWidgetState extends State<IconButtonWidget> with ThemeMixin {
       }
     }
 
-    final child = IconWidget(
-      color: fgColor,
-      icon: widget.icon,
-      size: widget.iconSize,
+    final borderRadius =
+        widget.borderRadius ?? BorderRadius.all(metrics.radius / 1.2);
+
+    final child = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconWidget(
+          color: fgColor,
+          icon: widget.icon,
+          size: widget.iconSize,
+        ),
+        if (widget.text != null)
+          const SpacerWidget(
+            direction: Axis.horizontal,
+            spacing: WidgetSpacing.small,
+          ),
+        if (widget.text != null)
+          TextWidget(
+            widget.text,
+            color: fgColor,
+            style: TextWidgetStyle.titleMedium,
+          ),
+      ],
     );
 
     return TouchableWidget(
@@ -64,10 +91,10 @@ class _IconButtonWidgetState extends State<IconButtonWidget> with ThemeMixin {
         visible: widget.isFilled,
         replacement: child,
         child: ContainerWidget(
-          padding: EdgeInsets.all(metrics.small),
+          padding: widget.padding ?? EdgeInsets.all(metrics.small),
           decoration: BoxDecoration(
             color: bgColor,
-            borderRadius: BorderRadius.all(metrics.radius / 1.2),
+            borderRadius: borderRadius,
           ),
           child: child,
         ),
