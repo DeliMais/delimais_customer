@@ -55,7 +55,7 @@ class AppBarWidget extends StatelessWidget with ThemeMixin {
   }
 }
 
-class _LeadingWidget extends StatelessWidget {
+class _LeadingWidget extends StatelessWidget with ThemeMixin {
   const _LeadingWidget({
     required this.title,
     required this.leading,
@@ -67,15 +67,19 @@ class _LeadingWidget extends StatelessWidget {
   final bool isBackVisible;
   @override
   Widget build(BuildContext context) {
+    final (_, metrics) = getTheme(context);
+
     return Row(
       children: [
         if (isBackVisible)
           IconButtonWidget(
+            iconSize: metrics.icon * 1.4,
             icon: SolarLinearIcons.altArrowLeft,
             onPressed: () => Get.back<void>(),
           ),
         if (isBackVisible)
           const SpacerWidget(
+            direction: Axis.horizontal,
             spacing: WidgetSpacing.small,
           ),
         if (title != null)
