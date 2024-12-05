@@ -15,7 +15,7 @@ class TextWidget extends StatelessWidget with ThemeMixin {
   });
 
   final String? text;
-  final int maxLines;
+  final int? maxLines;
   final bool autoScroll;
   final TextAlign align;
   final TextWidgetStyle style;
