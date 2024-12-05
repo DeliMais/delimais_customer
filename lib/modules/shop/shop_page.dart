@@ -42,7 +42,7 @@ class ShopPage extends StatelessWidget with ThemeMixin {
         iconSize: metrics.icon * 1.4,
         borderRadius: BorderRadius.circular(100),
         padding: EdgeInsets.all(metrics.medium / 1.4),
-        onPressed: () {},
+        onPressed: () async => Get.toNamed(AppRoutes.bag),
       ),
       body: NestedScrollView(
         body: const _BodyWidget(),

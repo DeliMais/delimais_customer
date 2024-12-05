@@ -4,4 +4,5 @@ abstract class AppRoutes {
   static const root = '/root';
   static const shop = '/shop';
   static const product = '/product';
+  static const bag = '/bag';
 }
