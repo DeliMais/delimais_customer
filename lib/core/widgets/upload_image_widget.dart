@@ -37,7 +37,7 @@ class _UploadImageWidgetState extends State<UploadImageWidget>
         width: 100,
         height: 100,
         borderRadius: BorderRadius.circular(100),
-        provider: _bytes != null ? MemoryImage(_bytes!) : null,
+        bytes: _bytes,
       ),
     );
   }

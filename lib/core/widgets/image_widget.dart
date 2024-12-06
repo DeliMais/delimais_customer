@@ -8,6 +8,7 @@ import 'package:solar_icon_pack/solar_icon_pack.dart';
 
 class ImageWidget extends StatelessWidget with ThemeMixin {
   const ImageWidget({
+    this.aspectRatio = 1 / 1,
     this.uri,
     this.bytes,
     this.width,
@@ -16,6 +17,7 @@ class ImageWidget extends StatelessWidget with ThemeMixin {
     super.key,
   });
 
+  final double aspectRatio;
   final String? uri;
   final Uint8List? bytes;
   final double? width;
@@ -40,8 +42,9 @@ class ImageWidget extends StatelessWidget with ThemeMixin {
       provider = null;
     }
 
+    late Widget child;
     if (provider != null) {
-      return ClipRRect(
+      child = ClipRRect(
         borderRadius: radius,
         child: Image(
           width: width,
@@ -51,21 +54,27 @@ class ImageWidget extends StatelessWidget with ThemeMixin {
           gaplessPlayback: true,
         ),
       );
+    } else {
+      child = ContainerWidget(
+        width: width,
+        height: height,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: radius,
+          border: Border.fromBorderSide(border),
+        ),
+        child: IconWidget(
+          color: colors.onSurface,
+          icon: SolarLinearIcons.gallery,
+        ),
+      );
     }
 
-    return ContainerWidget(
+    return SizedBox(
       width: width,
       height: height,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: colors.surface,
-        borderRadius: radius,
-        border: Border.fromBorderSide(border),
-      ),
-      child: IconWidget(
-        color: colors.onSurface,
-        icon: SolarLinearIcons.gallery,
-      ),
+      child: AspectRatio(aspectRatio: aspectRatio, child: child),
     );
   }
 }
