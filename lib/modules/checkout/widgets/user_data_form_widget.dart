@@ -1,6 +1,7 @@
 part of '../checkout_page.dart';
 
-class _UserDataFormWidget extends StatelessWidget with ThemeMixin {
+class _UserDataFormWidget extends GetView<CheckoutPageController>
+    with ThemeMixin {
   const _UserDataFormWidget();
 
   @override
@@ -16,24 +17,27 @@ class _UserDataFormWidget extends StatelessWidget with ThemeMixin {
             color: colors.onBackgroundAlt,
           ),
           const SpacerWidget(),
-          const TextFieldWidget(
+          TextFieldWidget(
             icon: SolarLinearIcons.user,
             labelText: 'Nome e sobrenome',
             hintText: 'Digite seu nome e sobrenome',
             type: TextInputType.name,
+            controller: controller.userNameFieldController,
           ),
           const SpacerWidget(spacing: WidgetSpacing.small),
-          const TextFieldWidget(
+          TextFieldWidget(
             icon: SolarLinearIcons.phone,
             labelText: 'Celular',
             hintText: '(00) 0 0000-0000',
             type: TextInputType.phone,
+            controller: controller.userPhoneFieldController,
           ),
           const SpacerWidget(spacing: WidgetSpacing.small),
-          const TextFieldWidget(
+          TextFieldWidget(
             icon: SolarLinearIcons.userId,
             labelText: 'CPF (opcional)',
             hintText: 'Digite seu CPF (opcional)',
+            controller: controller.userCPFFieldController,
           ),
         ],
       ),

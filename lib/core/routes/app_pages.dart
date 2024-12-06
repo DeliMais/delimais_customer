@@ -1,4 +1,8 @@
+import 'package:delimais_customer/core/bindings/bag_module_binding.dart';
+import 'package:delimais_customer/core/bindings/checkout_module_binding.dart';
 import 'package:delimais_customer/core/bindings/login_module_binding.dart';
+import 'package:delimais_customer/core/bindings/payment_module_binding.dart';
+import 'package:delimais_customer/core/bindings/product_module_binding.dart';
 import 'package:delimais_customer/core/bindings/register_module_binding.dart';
 import 'package:delimais_customer/core/bindings/root_module_binding.dart';
 import 'package:delimais_customer/core/bindings/shop_module_binding.dart';
@@ -10,7 +14,7 @@ import 'package:delimais_customer/modules/payment/payment_page.dart';
 import 'package:delimais_customer/modules/product/product_page.dart';
 import 'package:delimais_customer/modules/register/register_page.dart';
 import 'package:delimais_customer/modules/root/root_page.dart';
-import 'package:delimais_customer/modules/shop/shop_page.dart';
+import 'package:delimais_customer/modules/shop/presentation/shop_page.dart';
 import 'package:get/get.dart';
 
 abstract class AppPages {
@@ -37,27 +41,34 @@ abstract class AppPages {
       title: 'Loja',
       name: AppRoutes.shop,
       page: ShopPage.new,
-      binding: const ShopModuleBinding(),
+      bindings: const [
+        ShopModuleBinding(),
+        BagModuleBinding(),
+      ],
     ),
     GetPage<void>(
       title: 'Produto',
       name: AppRoutes.product,
       page: ProductPage.new,
+      binding: const ProductModuleBinding(),
     ),
     GetPage<void>(
       title: 'Sacola',
       name: AppRoutes.bag,
       page: BagPage.new,
+      binding: const BagModuleBinding(),
     ),
     GetPage<void>(
       title: 'Checkout',
       name: AppRoutes.checkout,
       page: CheckoutPage.new,
+      binding: const CheckoutModuleBinding(),
     ),
     GetPage<void>(
       title: 'Pagamento',
       name: AppRoutes.payment,
       page: PaymentPage.new,
+      binding: const PaymentModuleBinding(),
     ),
   ];
 }

@@ -1,6 +1,7 @@
 part of '../product_page.dart';
 
-class _ProductBottomWidget extends StatelessWidget with ThemeMixin {
+class _ProductBottomWidget extends GetView<ProductPageController>
+    with ThemeMixin {
   const _ProductBottomWidget();
 
   @override
@@ -18,14 +19,14 @@ class _ProductBottomWidget extends StatelessWidget with ThemeMixin {
               children: [
                 IconButtonWidget(
                   icon: SolarLinearIcons.minus,
-                  onPressed: () => {},
+                  onPressed: controller.decreaseQuantity,
                 ),
                 const SpacerWidget(direction: Axis.horizontal),
-                const TextWidget('1'),
+                Obx(() => TextWidget(controller.quantity.toString())),
                 const SpacerWidget(direction: Axis.horizontal),
                 IconButtonWidget(
                   icon: SolarLinearIcons.add,
-                  onPressed: () => {},
+                  onPressed: controller.increaseQuantity,
                 ),
               ],
             ),
@@ -37,7 +38,10 @@ class _ProductBottomWidget extends StatelessWidget with ThemeMixin {
               child: ButtonWidget(
                 text: 'Adicionar',
                 icon: SolarLinearIcons.addCircle,
-                onPressed: () async => Get.offNamed(AppRoutes.shop),
+                onPressed: () async {
+                  controller.addToBag();
+                  await Get.offNamed<void>(AppRoutes.shop);
+                },
               ),
             ),
           ],

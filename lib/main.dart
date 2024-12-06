@@ -8,13 +8,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:statusbarz/statusbarz.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await Future.wait([
+    initializeDateFormatting('pt_BR'),
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge),
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
+  ]);
 
   runApp(const MyApp());
 }
@@ -40,7 +45,7 @@ class MyApp extends StatelessWidget {
         color: const ThemeLightColors().primary,
         theme: const AppTheme(isDark: false).data,
         darkTheme: const AppTheme(isDark: true).data,
-        locale: const Locale('pt', 'BR'),
+        locale: _getLocale(),
         navigatorObservers: [Statusbarz.instance.observer],
       ),
     );
@@ -68,4 +73,12 @@ class MyApp extends StatelessWidget {
 
   if (!kIsWeb && Platform.isIOS) return (dark, light);
   return (light, dark);
+}
+
+Locale _getLocale() {
+  const localeName = 'pt_BR';
+  final locale = localeName.split('_');
+
+  Intl.defaultLocale = localeName;
+  return Locale(locale.first, locale.last);
 }

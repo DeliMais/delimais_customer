@@ -1,6 +1,7 @@
 part of '../checkout_page.dart';
 
-class _DeliveryPickerWidget extends StatelessWidget with ThemeMixin {
+class _DeliveryPickerWidget extends GetView<CheckoutPageController>
+    with ThemeMixin, DateTimeMixin {
   const _DeliveryPickerWidget();
 
   @override
@@ -15,20 +16,33 @@ class _DeliveryPickerWidget extends StatelessWidget with ThemeMixin {
           color: colors.onBackgroundAlt,
         ),
         const SpacerWidget(),
-        const OptionWidget(
-          isActive: true,
-          text: 'Entrega',
-          icon: SolarLinearIcons.scooter,
-          activeIcon: SolarBoldIcons.scooter,
-          trailingText: '1h30m',
-        ),
+        Obx(() {
+          final min = getDuration(controller.shop!.delivery.min);
+          final max = getDuration(controller.shop!.delivery.max);
+
+          return OptionWidget(
+            text: OrderTypeEnum.delivery.value,
+            icon: SolarLinearIcons.scooter,
+            activeIcon: SolarBoldIcons.scooter,
+            isActive: controller.orderType == OrderTypeEnum.delivery,
+            trailingText: '$min - $max',
+            onPressed: () => controller.orderType = OrderTypeEnum.delivery,
+          );
+        }),
         const SpacerWidget(spacing: WidgetSpacing.small),
-        const OptionWidget(
-          text: 'Retirada',
-          icon: SolarLinearIcons.shop,
-          activeIcon: SolarBoldIcons.shop,
-          trailingText: '30m',
-        ),
+        Obx(() {
+          final min = getDuration(controller.shop!.pickup.min);
+          final max = getDuration(controller.shop!.pickup.max);
+
+          return OptionWidget(
+            text: OrderTypeEnum.pickup.value,
+            icon: SolarLinearIcons.shop,
+            activeIcon: SolarBoldIcons.shop,
+            trailingText: '$min - $max',
+            isActive: controller.orderType == OrderTypeEnum.pickup,
+            onPressed: () => controller.orderType = OrderTypeEnum.pickup,
+          );
+        }),
       ],
     );
   }

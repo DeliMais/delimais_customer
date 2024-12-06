@@ -1,4 +1,6 @@
-import 'package:delimais_customer/modules/shop/shop_page_controller.dart';
+import 'package:delimais_customer/modules/shop/presentation/shop_page_controller.dart';
+import 'package:delimais_customer/modules/shop/shop_datasource.dart';
+import 'package:delimais_customer/modules/shop/shop_repository.dart';
 import 'package:get/get.dart';
 
 class ShopModuleBinding implements Bindings {
@@ -6,6 +8,12 @@ class ShopModuleBinding implements Bindings {
 
   @override
   void dependencies() {
-    Get.lazyPut(ShopPageController.new);
+    Get
+      ..lazyPut<ShopRepository>(
+        () => const ShopRepositoryImpl(
+          datasource: ShopDatasourceImpl(),
+        ),
+      )
+      ..lazyPut(ShopPageController.new);
   }
 }

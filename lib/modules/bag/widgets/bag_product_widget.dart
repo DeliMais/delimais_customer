@@ -1,6 +1,11 @@
 part of '../bag_page.dart';
 
-class _BagProductWidget extends StatelessWidget with ThemeMixin {
+class _BagProductWidget extends GetView<BagPageController>
+    with ThemeMixin, MonetaryMixin {
+  const _BagProductWidget({required this.product});
+
+  final BagProductEntity product;
+
   @override
   Widget build(BuildContext context) {
     final (colors, metrics) = getTheme(context);
@@ -10,9 +15,10 @@ class _BagProductWidget extends StatelessWidget with ThemeMixin {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ImageWidget(
+          ImageWidget(
             height: 60,
-            uri: 'assets/logo.png',
+            uri: product.product.picture,
+            borderRadius: BorderRadius.all(metrics.radius),
           ),
           const SpacerWidget(
             direction: Axis.horizontal,
@@ -23,24 +29,30 @@ class _BagProductWidget extends StatelessWidget with ThemeMixin {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const TextWidget(
-                  'Marmita Grande',
+                TextWidget(
+                  product.product.name,
                   style: TextWidgetStyle.titleMedium,
                 ),
                 TextWidget(
-                  'Descrição do produto...',
+                  product.product.description,
                   color: colors.onBackgroundAlt,
                 ),
                 const SpacerWidget(spacing: WidgetSpacing.small),
-                const TextWidget(
-                  r'R$100,00',
+                TextWidget(
+                  getPrice(product.product.price),
                   style: TextWidgetStyle.titleMedium,
                 ),
-                const SpacerWidget(),
-                const TextWidget(
-                  '1x - Adicional 1\n1x - Adicional 1\n1x - Adicional 1',
-                  maxLines: null,
-                ),
+                // const SpacerWidget(),
+                // const TextWidget(
+                //   '1x - Adicional 1\n1x - Adicional 1\n1x - Adicional 1',
+                //   maxLines: null,
+                // ),
+                if (product.notes != null) const SpacerWidget(),
+                if (product.notes != null)
+                  TextWidget(
+                    'OBS: ${product.notes}',
+                    color: colors.onBackgroundAlt,
+                  ),
               ],
             ),
           ),
@@ -49,14 +61,14 @@ class _BagProductWidget extends StatelessWidget with ThemeMixin {
             children: [
               IconButtonWidget(
                 icon: SolarLinearIcons.minus,
-                onPressed: () => {},
+                onPressed: () => controller.decreaseProductQuantity(product),
               ),
               const SpacerWidget(direction: Axis.horizontal),
-              const TextWidget('0'),
+              TextWidget(product.quantity.toString()),
               const SpacerWidget(direction: Axis.horizontal),
               IconButtonWidget(
                 icon: SolarLinearIcons.add,
-                onPressed: () => {},
+                onPressed: () => controller.increaseProductQuantity(product),
               ),
             ],
           ),
