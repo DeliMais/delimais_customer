@@ -6,6 +6,7 @@ import 'package:delimais_customer/core/bindings/product_module_binding.dart';
 import 'package:delimais_customer/core/bindings/register_module_binding.dart';
 import 'package:delimais_customer/core/bindings/root_module_binding.dart';
 import 'package:delimais_customer/core/bindings/shop_module_binding.dart';
+import 'package:delimais_customer/core/bindings/summary_module_binding.dart';
 import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/modules/bag/bag_page.dart';
 import 'package:delimais_customer/modules/checkout/checkout_page.dart';
@@ -15,6 +16,7 @@ import 'package:delimais_customer/modules/product/product_page.dart';
 import 'package:delimais_customer/modules/register/register_page.dart';
 import 'package:delimais_customer/modules/root/root_page.dart';
 import 'package:delimais_customer/modules/shop/presentation/shop_page.dart';
+import 'package:delimais_customer/modules/summary/summary_page.dart';
 import 'package:get/get.dart';
 
 abstract class AppPages {
@@ -69,6 +71,12 @@ abstract class AppPages {
       name: AppRoutes.payment,
       page: PaymentPage.new,
       binding: const PaymentModuleBinding(),
+    ),
+    GetPage<void>(
+      title: 'Resumo',
+      name: AppRoutes.summary,
+      page: SummaryPage.new,
+      binding: const SummaryModuleBinding(),
     ),
   ];
 }

@@ -12,7 +12,7 @@ enum PaymentMethodEnum {
 }
 
 extension PaymentMethodEnumExt on PaymentMethodEnum {
-  String get value {
+  String get getValue {
     switch (this) {
       case PaymentMethodEnum.none:
         return 'Nenhum';

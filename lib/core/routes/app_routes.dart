@@ -7,4 +7,5 @@ abstract class AppRoutes {
   static const bag = '/bag';
   static const checkout = '/checkout';
   static const payment = '/payment';
+  static const summary = '/summary';
 }

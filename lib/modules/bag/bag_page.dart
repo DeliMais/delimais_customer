@@ -2,7 +2,6 @@ import 'package:delimais_customer/core/domain/entities/bag/bag_product_entity.da
 import 'package:delimais_customer/core/domain/entities/shop/shop_entity.dart';
 import 'package:delimais_customer/core/mixins/monetary_mixin.dart';
 import 'package:delimais_customer/core/mixins/theme_mixin.dart';
-import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/core/widgets/app_bar_widget.dart';
 import 'package:delimais_customer/core/widgets/buttons/button_widget.dart';
 import 'package:delimais_customer/core/widgets/buttons/icon_button_widget.dart';
@@ -115,13 +114,7 @@ class _FooterWidget extends GetView<BagPageController>
             ButtonWidget(
               text: 'Finalizar compra',
               icon: SolarLinearIcons.checkCircle,
-              onPressed: () async => Get.toNamed(
-                AppRoutes.checkout,
-                arguments: {
-                  'bag': controller.bag,
-                  'shop': controller.shop,
-                },
-              ),
+              onPressed: () async => controller.save(),
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:delimais_customer/core/domain/entities/order/order_entity.dart';
+import 'package:delimais_customer/core/domain/entities/order/order_payment_entity.dart';
 import 'package:delimais_customer/core/domain/enums/payment_method_enum.dart';
 import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:delimais_customer/modules/bag/bag_page_controller.dart';
@@ -28,6 +29,11 @@ class PaymentPageController extends GetxController {
 
   Future<void> save() async {
     _bagPageController.clearBag();
-    await Get.offAllNamed<void>(AppRoutes.shop);
+
+    final order = _order.value!.copyWith(
+      payment: OrderPaymentEntity(method: _method.value!),
+    );
+
+    await Get.offAllNamed<void>(AppRoutes.summary, arguments: order);
   }
 }

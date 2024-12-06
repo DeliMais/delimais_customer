@@ -1,6 +1,7 @@
 import 'package:delimais_customer/core/domain/entities/bag/bag_entity.dart';
 import 'package:delimais_customer/core/domain/entities/bag/bag_product_entity.dart';
 import 'package:delimais_customer/core/domain/entities/shop/shop_entity.dart';
+import 'package:delimais_customer/core/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class BagPageController extends GetxController {
@@ -79,6 +80,17 @@ class BagPageController extends GetxController {
 
     _bag.value.products.removeAt(index);
     _calculateTotals();
+  }
+
+  Future<void> save() async {
+    final bag = _bag.value.copyWith(products: _bag.value.products.toList());
+    await Get.toNamed<void>(
+      AppRoutes.checkout,
+      arguments: {
+        'bag': bag,
+        'shop': _shop.value,
+      },
+    );
   }
 
   void _calculateTotals() {

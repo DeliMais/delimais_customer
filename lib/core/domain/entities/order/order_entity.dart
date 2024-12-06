@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:delimais_customer/core/domain/entities/bag/bag_entity.dart';
 import 'package:delimais_customer/core/domain/entities/order/order_address_entity.dart';
+import 'package:delimais_customer/core/domain/entities/order/order_payment_entity.dart';
 import 'package:delimais_customer/core/domain/entities/order/order_user_entity.dart';
 import 'package:delimais_customer/core/domain/enums/order_type_enum.dart';
 import 'package:flutter/foundation.dart';
@@ -16,13 +17,15 @@ class OrderEntity with OrderEntityMappable {
     required this.user,
     required this.price,
     this.address,
+    this.payment,
   });
 
   final BagEntity bag;
   final OrderTypeEnum type;
   final OrderUserEntity user;
-  final OrderAddressEntity? address;
   final double price;
+  final OrderAddressEntity? address;
+  final OrderPaymentEntity? payment;
 
   @override
   bool operator ==(Object other) {

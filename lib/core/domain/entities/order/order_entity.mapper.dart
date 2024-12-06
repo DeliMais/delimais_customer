@@ -17,6 +17,7 @@ class OrderEntityMapper extends ClassMapperBase<OrderEntity> {
       OrderTypeEnumMapper.ensureInitialized();
       OrderUserEntityMapper.ensureInitialized();
       OrderAddressEntityMapper.ensureInitialized();
+      OrderPaymentEntityMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -37,6 +38,9 @@ class OrderEntityMapper extends ClassMapperBase<OrderEntity> {
   static OrderAddressEntity? _$address(OrderEntity v) => v.address;
   static const Field<OrderEntity, OrderAddressEntity> _f$address =
       Field('address', _$address, opt: true);
+  static OrderPaymentEntity? _$payment(OrderEntity v) => v.payment;
+  static const Field<OrderEntity, OrderPaymentEntity> _f$payment =
+      Field('payment', _$payment, opt: true);
 
   @override
   final MappableFields<OrderEntity> fields = const {
@@ -45,6 +49,7 @@ class OrderEntityMapper extends ClassMapperBase<OrderEntity> {
     #user: _f$user,
     #price: _f$price,
     #address: _f$address,
+    #payment: _f$payment,
   };
   @override
   final bool ignoreNull = true;
@@ -55,7 +60,8 @@ class OrderEntityMapper extends ClassMapperBase<OrderEntity> {
         type: data.dec(_f$type),
         user: data.dec(_f$user),
         price: data.dec(_f$price),
-        address: data.dec(_f$address));
+        address: data.dec(_f$address),
+        payment: data.dec(_f$payment));
   }
 
   @override
@@ -113,12 +119,15 @@ abstract class OrderEntityCopyWith<$R, $In extends OrderEntity, $Out>
   OrderUserEntityCopyWith<$R, OrderUserEntity, OrderUserEntity> get user;
   OrderAddressEntityCopyWith<$R, OrderAddressEntity, OrderAddressEntity>?
       get address;
+  OrderPaymentEntityCopyWith<$R, OrderPaymentEntity, OrderPaymentEntity>?
+      get payment;
   $R call(
       {BagEntity? bag,
       OrderTypeEnum? type,
       OrderUserEntity? user,
       double? price,
-      OrderAddressEntity? address});
+      OrderAddressEntity? address,
+      OrderPaymentEntity? payment});
   OrderEntityCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -140,18 +149,23 @@ class _OrderEntityCopyWithImpl<$R, $Out>
   OrderAddressEntityCopyWith<$R, OrderAddressEntity, OrderAddressEntity>?
       get address => $value.address?.copyWith.$chain((v) => call(address: v));
   @override
+  OrderPaymentEntityCopyWith<$R, OrderPaymentEntity, OrderPaymentEntity>?
+      get payment => $value.payment?.copyWith.$chain((v) => call(payment: v));
+  @override
   $R call(
           {BagEntity? bag,
           OrderTypeEnum? type,
           OrderUserEntity? user,
           double? price,
-          Object? address = $none}) =>
+          Object? address = $none,
+          Object? payment = $none}) =>
       $apply(FieldCopyWithData({
         if (bag != null) #bag: bag,
         if (type != null) #type: type,
         if (user != null) #user: user,
         if (price != null) #price: price,
-        if (address != $none) #address: address
+        if (address != $none) #address: address,
+        if (payment != $none) #payment: payment
       }));
   @override
   OrderEntity $make(CopyWithData data) => OrderEntity(
@@ -159,7 +173,8 @@ class _OrderEntityCopyWithImpl<$R, $Out>
       type: data.get(#type, or: $value.type),
       user: data.get(#user, or: $value.user),
       price: data.get(#price, or: $value.price),
-      address: data.get(#address, or: $value.address));
+      address: data.get(#address, or: $value.address),
+      payment: data.get(#payment, or: $value.payment));
 
   @override
   OrderEntityCopyWith<$R2, OrderEntity, $Out2> $chain<$R2, $Out2>(

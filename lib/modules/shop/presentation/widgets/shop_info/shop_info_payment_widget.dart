@@ -6,7 +6,8 @@ class _ShopInfoPaymentWidget extends GetView<ShopPageController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final payments = controller.shop!.methods.map((method) => method.value);
+      final payments =
+          controller.shop!.methods.map((method) => method.getValue);
 
       return _ShopInfoItemWidget(
         icon: SolarLinearIcons.dollarMinimalistic,
