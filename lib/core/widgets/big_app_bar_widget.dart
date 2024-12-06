@@ -9,14 +9,14 @@ import 'package:solar_icon_pack/solar_icon_pack.dart';
 
 class BigAppBarWidget extends StatelessWidget with ThemeMixin {
   const BigAppBarWidget({
-    required this.title,
     required this.image,
+    required this.title,
     this.isBackVisible = false,
     super.key,
   });
 
+  final String image;
   final String title;
-  final ImageProvider image;
   final bool isBackVisible;
 
   @override
@@ -25,7 +25,7 @@ class BigAppBarWidget extends StatelessWidget with ThemeMixin {
 
     return Stack(
       children: [
-        Positioned.fill(child: ImageWidget(provider: image)),
+        Positioned.fill(child: ImageWidget(uri: image)),
         Positioned.fill(
           child: ColoredBox(color: Colors.black.withOpacity(0.2)),
         ),
