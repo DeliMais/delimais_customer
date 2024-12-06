@@ -78,6 +78,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with ThemeMixin {
     if (_isObscure) suffixIcon = SolarLinearIcons.eye;
 
     return TextFormField(
+      controller: widget.controller,
       obscureText: _isObscure,
       autocorrect: widget.isAutocorrect,
       keyboardType: widget.type,
@@ -132,5 +133,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> with ThemeMixin {
       icon: suffixIcon,
       onPressed: () => setState(() => _isObscure = !_isObscure),
     );
+  }
+}
+
+extension TextEditingControllerExt on TextEditingController {
+  String? get getText {
+    if (text.isNotEmpty) return text;
+    return null;
   }
 }
