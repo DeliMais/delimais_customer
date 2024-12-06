@@ -10,6 +10,10 @@ APP_NAME=delimais_customer
 
 .default: icons
 
+runner:
+	@echo "Running the build_runner"
+	@dart run build_runner build
+
 icons:
 	@echo "Generating launcher icons"
 	@dart run flutter_launcher_icons
