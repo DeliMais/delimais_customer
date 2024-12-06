@@ -56,7 +56,7 @@ class _HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BigAppBarWidget(
       title: 'Login',
-      image: AssetImage('assets/delivery.png'),
+      image: 'assets/delivery.png',
     );
   }
 }

@@ -59,7 +59,7 @@ class _HeaderWidget extends StatelessWidget {
     return const BigAppBarWidget(
       title: 'Registrar',
       isBackVisible: true,
-      image: AssetImage('assets/delivery.png'),
+      image: 'assets/delivery.png',
     );
   }
 }

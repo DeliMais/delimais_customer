@@ -12,7 +12,7 @@ class _BagProductWidget extends StatelessWidget with ThemeMixin {
         children: [
           const ImageWidget(
             height: 60,
-            provider: AssetImage('assets/logo.png'),
+            uri: 'assets/logo.png',
           ),
           const SpacerWidget(
             direction: Axis.horizontal,

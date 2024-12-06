@@ -35,7 +35,7 @@ class ProductPage extends StatelessWidget with ThemeMixin {
             expandedHeight: 300,
             collapsedHeight: 20,
             title: 'Marmita Grande',
-            background: ImageWidget(provider: AssetImage('assets/logo.png')),
+            background: ImageWidget(uri: 'assets/logo.png'),
           ),
           SliverPadding(
             padding: EdgeInsets.all(metrics.medium),

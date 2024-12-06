@@ -16,7 +16,7 @@ class _PaymentPixWidget extends StatelessWidget with ThemeMixin {
           width: 200,
           height: 200,
           borderRadius: BorderRadius.all(metrics.radius),
-          provider: const AssetImage('assets/qrcode.png'),
+          uri: 'assets/qrcode.png',
         ),
         const SpacerWidget(spacing: WidgetSpacing.small),
         const Row(
