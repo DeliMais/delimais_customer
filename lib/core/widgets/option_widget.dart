@@ -1,4 +1,5 @@
 import 'package:delimais_customer/core/mixins/theme_mixin.dart';
+import 'package:delimais_customer/core/widgets/buttons/touchable_widget.dart';
 import 'package:delimais_customer/core/widgets/container_widget.dart';
 import 'package:delimais_customer/core/widgets/icon_widget.dart';
 import 'package:delimais_customer/core/widgets/spacer_widget.dart';
@@ -10,6 +11,7 @@ class OptionWidget extends StatelessWidget with ThemeMixin {
     required this.text,
     required this.icon,
     required this.activeIcon,
+    required this.onPressed,
     this.isActive = false,
     this.trailingText,
     super.key,
@@ -18,6 +20,7 @@ class OptionWidget extends StatelessWidget with ThemeMixin {
   final String text;
   final IconData icon;
   final IconData activeIcon;
+  final VoidCallback onPressed;
   final bool isActive;
   final String? trailingText;
 
@@ -38,38 +41,41 @@ class OptionWidget extends StatelessWidget with ThemeMixin {
       textStyle = TextWidgetStyle.titleMedium;
     }
 
-    return ContainerWidget(
-      width: metrics.button.width,
-      height: metrics.button.height,
-      padding: EdgeInsets.all(metrics.small).copyWith(
-        right: metrics.medium / 1.4,
-      ),
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.all(metrics.radius),
-      ),
-      child: Row(
-        children: [
-          IconWidget(icon: newIcon, color: fgColor),
-          const SpacerWidget(
-            direction: Axis.horizontal,
-            spacing: WidgetSpacing.small,
-          ),
-          TextWidget(
-            text,
-            color: fgColor,
-            style: textStyle,
-          ),
-          const Spacer(),
-          if (trailingText != null)
-            TextWidget(
-              trailingText,
-              style: textStyle,
-              color: trailingColor,
+    return TouchableWidget(
+      onPressed: onPressed,
+      child: ContainerWidget(
+        width: metrics.button.width,
+        height: metrics.button.height,
+        padding: EdgeInsets.all(metrics.small).copyWith(
+          right: metrics.medium / 1.4,
+        ),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.all(metrics.radius),
+        ),
+        child: Row(
+          children: [
+            IconWidget(icon: newIcon, color: fgColor),
+            const SpacerWidget(
+              direction: Axis.horizontal,
+              spacing: WidgetSpacing.small,
             ),
-          const SpacerWidget(direction: Axis.horizontal),
-          _DotWidget(isActive: isActive),
-        ],
+            TextWidget(
+              text,
+              color: fgColor,
+              style: textStyle,
+            ),
+            const Spacer(),
+            if (trailingText != null)
+              TextWidget(
+                trailingText,
+                style: textStyle,
+                color: trailingColor,
+              ),
+            const SpacerWidget(direction: Axis.horizontal),
+            _DotWidget(isActive: isActive),
+          ],
+        ),
       ),
     );
   }
