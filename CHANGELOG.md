@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.5.0
+
+* Added summary page
+* Added UI/UX improvements
+* Implemented the purchase flow locally
+* Added forwarding of order summary by WhatsApp
+
+A few more things. Check the [69e17920e802030979e2e24ada75eb2bcbd3bb86](https://github.com/DeliMais/delimais_customer/tree/69e17920e802030979e2e24ada75eb2bcbd3bb86) commit and before.
+
 ## 0.4.0
 
 * Added bag screen UI
